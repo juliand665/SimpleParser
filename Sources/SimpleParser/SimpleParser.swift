@@ -7,6 +7,10 @@ public struct Parser {
 		input.first
 	}
 	
+	public var offsetInInput: Int {
+		input.base.distance(from: input.base.startIndex, to: input.startIndex)
+	}
+	
 	public init<S>(reading string: S) where S: StringProtocol {
 		input = Substring(string)
 	}
