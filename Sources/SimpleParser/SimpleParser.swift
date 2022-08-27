@@ -68,6 +68,12 @@ public struct Parser {
 	}
 	
 	@discardableResult
+	public mutating func tryConsumeNext() -> Character? {
+		guard !isDone else { return nil }
+		return consumeNext()
+	}
+	
+	@discardableResult
 	public mutating func consumeNext(_ maxLength: Int) -> Substring {
 		defer { input.removeFirst(maxLength) }
 		return input.prefix(maxLength)
