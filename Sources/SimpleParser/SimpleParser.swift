@@ -145,13 +145,13 @@ public extension Parseable {
 	}
 }
 
-extension Array: Parseable where Element == Int {
+extension Array: Parseable where Element: Parseable {
 	@inlinable
 	public init(from parser: inout Parser) {
 		self.init()
 		repeat {
 			parser.consume(copiesOf: " ")
-			append(parser.readInt())
+			append(parser.readValue())
 		} while parser.tryConsume(",")
 	}
 }
