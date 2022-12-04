@@ -156,3 +156,10 @@ extension Array: Parseable where Element: Parseable {
 		} while parser.tryConsume(",")
 	}
 }
+
+extension Int: Parseable {
+	@inlinable
+	public init(from parser: inout Parser) {
+		self = parser.readInt()
+	}
+}
