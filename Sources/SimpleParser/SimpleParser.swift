@@ -101,10 +101,11 @@ public struct Parser {
 	}
 	
 	@usableFromInline
-	static let numberCharacters = Set("+-0123456789")
+	static let numberCharacters = Set("0123456789")
 	@inlinable
 	public mutating func readInt() -> Int {
-		Int(consume(while: Self.numberCharacters.contains))!
+		let sign = tryConsume("-") ? -1 : tryConsume("+") ? 1 : 1
+		return sign * Int(consume(while: Self.numberCharacters.contains))!
 	}
 	
 	@usableFromInline
